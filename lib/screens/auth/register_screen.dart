@@ -1,3 +1,4 @@
+import 'package:eta_app/theme/color.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class RegisterScreen extends StatelessWidget {
         TextFormField(
           decoration: InputDecoration(
             labelText: "Full Name",
-            prefixIcon: const Icon(Icons.person_outline, color: Colors.teal),
+            prefixIcon: const Icon(Icons.person_outline, color: AppTheme.primaryTeal),
             filled: true,
             fillColor: Colors.grey.shade100,
             contentPadding: const EdgeInsets.symmetric(
@@ -31,7 +32,7 @@ class RegisterScreen extends StatelessWidget {
         TextFormField(
           decoration: InputDecoration(
             labelText: "Email",
-            prefixIcon: const Icon(Icons.email_outlined, color: Colors.teal),
+            prefixIcon: const Icon(Icons.email_outlined, color: AppTheme.primaryTeal),
             filled: true,
             fillColor: Colors.grey.shade100,
             contentPadding: const EdgeInsets.symmetric(
@@ -51,7 +52,7 @@ class RegisterScreen extends StatelessWidget {
           obscureText: true,
           decoration: InputDecoration(
             labelText: "Password",
-            prefixIcon: const Icon(Icons.lock_outline, color: Colors.teal),
+            prefixIcon: const Icon(Icons.lock_outline, color: AppTheme.primaryTeal),
             suffixIcon: const Icon(
               Icons.visibility_outlined,
               color: Colors.grey,
@@ -77,7 +78,7 @@ class RegisterScreen extends StatelessWidget {
             labelText: "Confirm Password",
             prefixIcon: const Icon(
               Icons.lock_reset_outlined,
-              color: Colors.teal,
+              color: AppTheme.primaryTeal,
             ),
             suffixIcon: const Icon(
               Icons.visibility_outlined,
@@ -103,7 +104,7 @@ class RegisterScreen extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(14),
             ),
-            backgroundColor: Colors.teal,
+            backgroundColor: AppTheme.primaryTeal,
             padding: const EdgeInsets.symmetric(vertical: 14),
             elevation: 3,
           ),
