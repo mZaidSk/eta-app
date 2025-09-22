@@ -1,3 +1,4 @@
+import 'package:eta_app/theme/color.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class LoginScreen extends StatelessWidget {
         TextFormField(
           decoration: InputDecoration(
             labelText: "Email",
-            prefixIcon: const Icon(Icons.email_outlined, color: Colors.teal),
+            prefixIcon: const Icon(Icons.email_outlined, color: AppTheme.primaryTeal),
             filled: true,
             fillColor: Colors.grey.shade100,
             contentPadding: const EdgeInsets.symmetric(
@@ -32,7 +33,7 @@ class LoginScreen extends StatelessWidget {
           obscureText: true,
           decoration: InputDecoration(
             labelText: "Password",
-            prefixIcon: const Icon(Icons.lock_outline, color: Colors.teal),
+            prefixIcon: const Icon(Icons.lock_outline, color: AppTheme.primaryTeal),
             suffixIcon: const Icon(
               Icons.visibility_outlined,
               color: Colors.grey,
@@ -58,7 +59,7 @@ class LoginScreen extends StatelessWidget {
             onPressed: () {},
             child: const Text(
               "Forgot password?",
-              style: TextStyle(color: Colors.teal),
+              style: TextStyle(color: AppTheme.primaryTeal),
             ),
           ),
         ),
@@ -70,7 +71,7 @@ class LoginScreen extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(14),
             ),
-            backgroundColor: Colors.teal,
+            backgroundColor: AppTheme.primaryTeal,
             padding: const EdgeInsets.symmetric(vertical: 14),
             elevation: 3,
           ),

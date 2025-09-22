@@ -1,17 +1,19 @@
+import 'package:eta_app/screens/account/account_category.dart';
+import 'package:eta_app/screens/analytics/analytics_screen.dart';
 import 'package:eta_app/screens/auth/auth_screen.dart';
+import 'package:eta_app/screens/budget/budget_screen.dart';
+import 'package:eta_app/screens/category/category_screen.dart';
+import 'package:eta_app/screens/home/home_page.dart';
+import 'package:eta_app/screens/transaction/normal_transaction.dart';
+import 'package:eta_app/screens/transaction/recurring_transaction.dart';
+import 'package:eta_app/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // 🔹 Layouts
 import 'package:eta_app/layouts/main_layout.dart';
-
-// 🔹 Screens
-// import 'package:eta_app/screens/dashboard_screen.dart';
-import 'package:eta_app/screens/profile_screen.dart';
-import 'package:eta_app/screens/transactions_screen.dart';
-// import 'package:eta_app/screens/budgets_screen.dart';
-// import 'package:eta_app/screens/chatbot_screen.dart';
+import 'package:eta_app/layouts/transaction_layout.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +34,8 @@ class MyApp extends StatelessWidget {
     prefs.clear(); // Remove this line in production
     final String? authToken = prefs.getString("authToken");
 
-    return (authToken?.isNotEmpty ?? false) ? "/transactions" : "/auth";
+    return (authToken?.isNotEmpty ?? false) ? "/" : "/auth";
+    // return "/";
   }
 
   @override
@@ -56,30 +59,47 @@ class MyApp extends StatelessWidget {
               builder: (context, state) => const AuthScreen(),
             ),
 
-            // 🔹 Main Layout (Dashboard, etc.)
+            // 🔹 Main Layout Routes
             ShellRoute(
               builder: (context, state, child) => MainLayout(child: child),
               routes: [
-                // GoRoute(
-                //   path: '/dashboard',
-                //   builder: (context, state) => const DashboardScreen(),
-                // ),
                 GoRoute(
-                  path: '/transactions',
-                  builder: (context, state) => const TransactionsScreen(),
+                  path: '/',
+                  builder: (context, state) => const HomeScreen(),
                 ),
-                // GoRoute(
-                //   path: '/budgets',
-                //   builder: (context, state) => const BudgetsScreen(),
-                // ),
                 GoRoute(
-                  path: '/profile',
-                  builder: (context, state) => const ProfileScreen(),
+                  path: '/category',
+                  builder: (context, state) => const CategoryScreen(),
                 ),
-                // GoRoute(
-                //   path: '/chatbot',
-                //   builder: (context, state) => const ChatbotScreen(),
-                // ),
+                GoRoute(
+                  path: '/account',
+                  builder: (context, state) => const AccountScreen(),
+                ),
+                GoRoute(
+                  path: '/budget',
+                  builder: (context, state) => const BudgetScreen(),
+                ),
+                GoRoute(
+                  path: '/analytics',
+                  builder: (context, state) => const AnalyticsScreen(),
+                ),
+              ],
+            ),
+
+            // 🔹 Transaction Routes (with extended layout)
+            ShellRoute(
+              builder: (context, state, child) =>
+                  TransactionLayout(child: child),
+              routes: [
+                GoRoute(
+                  path: '/transactions/normal',
+                  builder: (context, state) => const NormalTransactionScreen(),
+                ),
+                GoRoute(
+                  path: '/transactions/recurring',
+                  builder: (context, state) =>
+                      const RecurringTransactionScreen(),
+                ),
               ],
             ),
           ],
@@ -87,6 +107,10 @@ class MyApp extends StatelessWidget {
 
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.teal,
+            fontFamily: 'Inter',
+          ),
           routerConfig: router,
         );
       },
